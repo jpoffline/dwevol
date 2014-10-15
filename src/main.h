@@ -22,10 +22,13 @@ const double PI=4.0*atan(1.0);
 
 #include "options.h"
 #include "inireader.h"
+#include "typesinfo.h"
+////////////////////////////////////////////////
 // The field definition
 double      fld[2][nflds][itot][jtot];
+////////////////////////////////////////////////
 
-// Some useful auxiliary function
+// Some useful auxiliary functions
 
 
 // Function to check if a directory exists; if not it'll get created
@@ -66,6 +69,19 @@ void printwelcome(){
 
 // Print top matter -- mainly info about current run
 void printtopmatter(){
+	
+	cout << endl;
+	cout << "Simulation conditions/parameters:" << endl;
+	cout << "output dir: " << outDIR << endl;	
+	cout << "(imax, jmax) = (" << imax << ", " << jmax << ")" << endl;
+	cout << "(h, ht) = (" << h << ", " << ht << ")" << endl;
+	printinfo("Potential",pottype);	
+	printinfo("BoundaryConditions",bctype);
+	printinfo("InitialConditions",inittype);
+	printinfo("EoM",eomtype);	
+	
+		
+	
 	
 	// Compute light-crossing time
 	double lx=int(imax*h/2/ht);
